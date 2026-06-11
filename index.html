@@ -15,12 +15,31 @@ body {
 .page {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 40px 30px;
+    padding: 35px 30px;
 }
 
+/* Header inspired by old site */
 .header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
     margin-bottom: 25px;
+}
+
+.picture-placeholder {
+    width: 130px;
+    height: 130px;
+    border: 2px dashed #9bbbd0;
+    color: #6d8ba0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.header-text {
+    text-align: left;
 }
 
 .site-title {
@@ -37,6 +56,7 @@ body {
     margin-top: 8px;
 }
 
+/* Blue bar */
 .blue-bar {
     height: 48px;
     background: #0788c9;
@@ -44,6 +64,7 @@ body {
     margin-bottom: 110px;
 }
 
+/* Main V-model invitation */
 .main-invitation {
     text-align: center;
     min-height: 300px;
@@ -61,6 +82,7 @@ body {
     color: #1f5f9f;
 }
 
+/* Footer */
 .footer {
     text-align: center;
     font-size: 0.9rem;
@@ -72,6 +94,26 @@ body {
     text-decoration: none;
     margin: 0 10px;
 }
+
+/* Mobile adjustment */
+@media (max-width: 700px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .header-text {
+        text-align: center;
+    }
+
+    .site-title {
+        font-size: 2.2rem;
+    }
+
+    .main-invitation h2 {
+        font-size: 3rem;
+    }
+}
 </style>
 </head>
 
@@ -80,9 +122,15 @@ body {
 <div class="page">
 
     <header class="header">
-        <h1 class="site-title">JUST ONE LOOK</h1>
-        <div class="tagline">
-            the purpose of our work is to rid humanity of the fear of life, one person at a time
+        <div class="picture-placeholder">
+            Picture
+        </div>
+
+        <div class="header-text">
+            <h1 class="site-title">JUST ONE LOOK</h1>
+            <div class="tagline">
+                the purpose of our work is to rid humanity of the fear of life, one person at a time
+            </div>
         </div>
     </header>
 
