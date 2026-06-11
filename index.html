@@ -7,40 +7,104 @@
 <style>
 body {
     margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: Arial, sans-serif;
+    background: white;
+    color: #222;
 }
 
-.container {
+.page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+.header {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-h1 {
+.site-title {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    color: #0b3d5c;
+    font-weight: bold;
+    margin: 0;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+.blue-bar {
+    height: 48px;
+    background: #0788c9;
+    border-radius: 4px;
+    margin-bottom: 110px;
+}
+
+.main-invitation {
+    text-align: center;
+    min-height: 300px;
+}
+
+.main-invitation h2 {
     font-size: 4rem;
     font-weight: normal;
-    margin-bottom: 1rem;
+    margin-bottom: 20px;
 }
 
-a {
-    font-size: 1.5rem;
+.main-invitation a {
+    font-size: 1.7rem;
     text-decoration: none;
+    color: #1f5f9f;
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 100px;
+}
+
+.footer a {
+    color: #1f5f9f;
+    text-decoration: none;
+    margin: 0 10px;
 }
 </style>
-
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Look at Yourself</h1>
+<div class="page">
 
-    <p>
-        <a href="https://chatgpt.com/g/g-69e2310032ec8191a886a5811372695c-look-at-yourself" target="_blank">
-            Try it.
-        </a>
-    </p>
+    <header class="header">
+        <h1 class="site-title">JUST ONE LOOK</h1>
+        <div class="tagline">
+            the purpose of our work is to rid humanity of the fear of life, one person at a time
+        </div>
+    </header>
+
+    <div class="blue-bar"></div>
+
+    <main class="main-invitation">
+        <h2>Look at Yourself</h2>
+
+        <p>
+            <a href="https://chatgpt.com/g/g-69e2310032ec8191a886a5811372695c-look-at-yourself">
+                Try it.
+            </a>
+        </p>
+    </main>
+
+    <footer class="footer">
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+        <a href="#">Resources</a>
+        <a href="#">Downloads</a>
+        <a href="#">Step 2</a>
+    </footer>
 
 </div>
 
