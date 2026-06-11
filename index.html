@@ -6,22 +6,29 @@
 
 <style>
 
-body {
+html, body {
+    height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
     background: white;
     color: #222;
-    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
 }
 
 .page {
+    width: 100%;
     max-width: 1000px;
-    margin: 0 auto;
     padding: 15px 20px;
 
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 /* Header */
@@ -31,7 +38,6 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 18px;
-    margin-bottom: 0;
 }
 
 .logo {
@@ -72,7 +78,7 @@ body {
 
 .main-invitation {
     text-align: center;
-    flex-grow: 1;
+    flex: 1;
 }
 
 .main-invitation h2 {
@@ -88,18 +94,19 @@ body {
     color: #1f5f9f;
 }
 
-/* Footer Navigation */
+/* Footer */
 
 .footer {
     text-align: center;
-    font-size: 0.8rem;
-    padding-bottom: 15px;
+    font-size: 0.95rem;
+    margin-top: auto;
+    padding-bottom: 12px;
 }
 
 .footer a {
     color: #1f5f9f;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 12px;
 }
 
 /* Mobile */
@@ -173,13 +180,9 @@ body {
     <footer class="footer">
 
         <a href="about.html">About</a>
-
         <a href="faq.html">FAQ</a>
-
         <a href="what-now.html">What Now?</a>
-
         <a href="resources.html">Resources</a>
-
         <a href="contact.html">Contact</a>
 
     </footer>
