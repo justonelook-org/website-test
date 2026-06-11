@@ -14,9 +14,9 @@ body {
 }
 
 .page {
-    max-width: 850px;
+    max-width: 950px;
     margin: 0 auto;
-    padding: 20px 20px;
+    padding: 15px 20px;
 }
 
 /* Header */
@@ -25,8 +25,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 18px;
+    margin-bottom: 0;
 }
 
 .logo {
@@ -39,7 +39,7 @@ body {
 }
 
 .site-title {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     letter-spacing: 2px;
     color: #0b3d5c;
     font-weight: bold;
@@ -50,7 +50,7 @@ body {
     font-size: 0.75rem;
     font-style: italic;
     margin-top: 5px;
-    max-width: 450px;
+    max-width: 500px;
 }
 
 /* Blue bar */
@@ -59,20 +59,21 @@ body {
     height: 30px;
     background: #0788c9;
     border-radius: 3px;
-    margin-bottom: 40px;
+    margin-top: -4px;
+    margin-bottom: 25px;
 }
 
 /* Main invitation */
 
 .main-invitation {
     text-align: center;
-    min-height: 180px;
+    min-height: 150px;
 }
 
 .main-invitation h2 {
     font-size: 1.9rem;
     font-weight: normal;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .main-invitation a {
@@ -87,7 +88,7 @@ body {
 .footer {
     text-align: center;
     font-size: 0.8rem;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .footer a {
@@ -103,6 +104,7 @@ body {
     .header {
         flex-direction: column;
         text-align: center;
+        gap: 8px;
     }
 
     .header-text {
@@ -114,7 +116,11 @@ body {
     }
 
     .site-title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+    }
+
+    .blue-bar {
+        margin-top: 8px;
     }
 
     .main-invitation h2 {
@@ -166,13 +172,9 @@ body {
     <footer class="footer">
 
         <a href="#">About</a>
-
         <a href="#">FAQ</a>
-
         <a href="#">Resources</a>
-
         <a href="#">Downloads</a>
-
         <a href="#">Step 2</a>
 
     </footer>
