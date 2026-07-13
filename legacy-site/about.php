@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic">
-<link rel="stylesheet" type="text/css" href="pageassets/justonelook_main.css?1762914891">
+<link rel="stylesheet" type="text/css" href="pageassets/justonelook_main-1762914864.css">
 <!-- Note: The PHP command echo(time()) loads the CSS file fresh every page load. After development, it can be removed to let it cache. -->
 
 
@@ -87,10 +87,8 @@ function googleTranslateElementInit() {
 <span class="header-menu-item"><a href="international.php" title="Translations">International</a></span></div>
 <!-- style="margin:9px 0 24px 0;" -->
 
-<div style="margin-bottom:1em; font-size:1.2em; font-weight:bold; text-align:center;"><span class="nowrap">Download the free PDF ebook:</span> <span class="nowrap"><a href="downloadV3/dh3_download.php?file=JOHN_and_CARLA_SHERMAN_The_Just_One_Look_Method.pdf">The Just One Look Method</a></span>&nbsp; (314 Kb)<br> 
-<a href="downloadV3/dh3_download.php?file=JOHN_und_CARLA_SHERMAN_Die_Nur-Ein-Blick-Methode.pdf">Die Nur-ein-Blick-Methode</a></span>&nbsp;(439 Kb)<br>
-<a href="downloadV3/dh3_download.php?file=JOHN_e_CARLA_SHERMAN_Il_Metodo_Just_One_Look.pdf">Il Metodo Just One Look</a></span>&nbsp;(333 Kb)<br>
-<a href="downloadV3/dh3_download.php?file=Джон_Шерман_и_Карла_Шерман_Метод_Только_один_взгляд.pdf">МЕТОД «ТОЛЬКО ОДИН ВЗГЛЯД»</a></span>&nbsp;(699 Kb) <br></div>
+<div style="margin-bottom:1em; font-size:1.2em; font-weight:bold; text-align:center;"><span class="nowrap">Download the free PDF ebook:</span> <span class="nowrap"><a href="downloadV3/dh3_download.php?file=The_Just_One_Look_Method.pdf">English</a></span>&nbsp;(1039 Kb) &nbsp;&nbsp;<span class="nowrap"><a href="downloadV3/dh3_download.php?file=METHOD_BOOKLET.pdf">Method Booklet</a></span>&nbsp;(102 Kb)<br><span class="nowrap"><a href="downloadV3/dh3_download.php?file=JOHN_und_CARLA_SHERMAN_Die_Nur-Ein-Blick-Methode.pdf">Die Nur-ein-Blick-Methode</a></span>&nbsp;(439 Kb)<br><a href="downloadV3/dh3_download.php?file=JOHN_e_CARLA_SHERMAN_Il_Metodo_Just_One_Look.pdf">Il Metodo Just One Look</a></span>&nbsp;(333 Kb)<br>
+<a href="downloadV3/dh3_download.php?file=Джон_Шерман_и_Карла_Шерман_Метод_Только_один_взгляд.pdf">МЕТОД «ТОЛЬКО ОДИН ВЗГЛЯД»</a></span>&nbsp;(334 Kb)<br></div>
 <div style="margin-bottom: 1.5em; font-size: 1em; font-weight: normal; background-color: #ffffff; text-align: left;">
 </div>
 
@@ -109,14 +107,14 @@ function googleTranslateElementInit() {
 
 <div class="non-index-page-content">
 <h1>About John Sherman</h1>
-<p>John Sherman was born in Camden, New Jersey. Like everyone, John spent most of his life unconsciously searching for the one perfect path out of the wilderness of human life; the one perfect idea, the one perfect thing to think, to understand, to want, to have, to believe, to become that would bring him salvation and satisfaction. The course of John's search was extreme compared to most, but the result was the same: nothing worked; nothing ever does.</p>
-<p>  Late in 1969, when he was 27 years old, John discovered the idea of Social Justice, and set out to become the perfect Communist revolutionary. In 1975, he joined with a small group of anarcho-communist radicals, and embarked upon a series of bank robberies, property bombings, gunfights with the police, two escapes from federal prisons and two years on the FBI's Ten Most Wanted List; all done in the name of supporting the struggles of the American worker for justice.</p>
+<p>John Sherman was born in Camden, New Jersey. Like everyone, John spent most of his life unconsciously searching for the one perfect path out of the wilderness of human life; the one perfect idea that would heal him permanently.</p>
+<p>  Late in 1969, when he was 27 years old, John discovered the idea of Social Justice, and set out to become the perfect Communist revolutionary. In 1975, he joined with a small group of anarchist-communists to begin a life of armed robbery and property destruction in order to fund and carry out the dreams of the radical left.</p>
 <p>  In January of 1976, John was shot and captured during a bank robbery; in March, during a trip to the hospital, he escaped.</p>
-<p>  In March of 1978, after two years on the run, robbing banks and organiing property bombings, John was captured by the FBI. He was tried, convicted, and sentenced to 30 years in federal prison.</p>
+<p>  In March of 1978, after two years on the run, robbing banks and organiing property bombings, John was captured by the FBI. He was tried, convicted, and sentenced to 30 years in federal prison for the violent crimes he committed.</p>
 <p>  In March of 1979, he escaped again from the federal prison where he was serving his sentence. He was put on the FBI's Ten Most Wanted List on April 24, 1979.</p>
 <p> On December 17, 1981, after two years on the FBI's Ten Most Wanted list, he was captured for the last time and returned to prison.</p>
-<p> In June of 1994, in the fifteenth year of his imprisonment, John had an overwhelming experience of awakening that took him completely by surprise. He spent more than a year and a half in the fully open awareness of spiritual awakening, which then collapsed, leaving him bereft.</p>
-<p> John spent the rest of his time in prison trying to find something that he could do that would bring him back to the state of indifference and apathy that he had enjoyed prior to that experience. This effort unexpectedly brought him to true freedom by means of an extremely simple act of attention.</p>
+<p> In June of 1994, in the fifteenth year of his imprisonment, John had an overwhelming experience of awakening that took him completely by surprise. He spent more than a year and a half in the library researching what had happened to him.</p>
+<p> John spent the rest of his time in prison trying to find something that he could do that would bring him back to the state of indifference and apathy that he had enjoyed prior to that experience of awakening.</p>
 <p> Three and a half years later, in April of 1998, he was released on parole. Upon his release, he moved to Boulder, Colorado.</p>
 	
 </div>
@@ -190,7 +188,7 @@ function googleTranslateElementInit() {
 <!-- End of the linked text row along the footer. -->
 
 <p class="footer-copyright">
-&copy 2000-2025 Just One Look Foundation. This website and all its contents are licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a> unless otherwise noted. The material on this website may be freely copied and distributed providing that this copyright notice - including the website address - is included in full. This material may not be included in any publication offered for sale without the written agreement of the copyright holder. For further information on this and related articles please visit our <a href="https://justonelook.org/copyright.php"> Copyright Page</a>.
+&copy 2000-2025 Just One Look Foundation. This website and all its contents are licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Attribution-NonCommercial-ShareAlike 4.0 International</a> license.
 </p>
 
 
