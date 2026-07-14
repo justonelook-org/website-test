@@ -1,0 +1,73 @@
+name: Windows path repair
+
+on:
+  push:
+    branches: [windows-path-audit]
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove every Windows-invalid tracked path in one commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B windows-path-cleanup origin/main
+          python - <<'PY'
+          import subprocess
+
+          raw = subprocess.check_output(["git", "ls-tree", "-rz", "--name-only", "HEAD"])
+          paths = [p.decode("utf-8", "surrogateescape") for p in raw.split(b"\0") if p]
+          reserved = {"CON", "PRN", "AUX", "NUL", *{f"COM{i}" for i in range(1, 10)}, *{f"LPT{i}" for i in range(1, 10)}}
+          invalid = []
+          for path in paths:
+              reasons = []
+              for part in path.split("/"):
+                  if any(ch in part for ch in '<>:"|?*'):
+                      reasons.append("forbidden character")
+                  if part.endswith(" ") or part.endswith("."):
+                      reasons.append("trailing space or dot")
+                  if part.split(".")[0].upper() in reserved:
+                      reasons.append("reserved Windows device name")
+              if reasons:
+                  invalid.append(path)
+
+          print(f"Removing {len(invalid)} Windows-invalid tracked paths")
+          for p in invalid:
+              print(p)
+          with open("/tmp/windows-invalid-paths.z", "wb") as f:
+              for p in invalid:
+                  f.write(p.encode("utf-8", "surrogateescape") + b"\0")
+          with open("/tmp/windows-invalid-paths.txt", "w", encoding="utf-8", errors="backslashreplace") as f:
+              f.write("\n".join(invalid) + "\n")
+          PY
+          git rm --pathspec-from-file=/tmp/windows-invalid-paths.z --pathspec-file-nul
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Remove all remaining Windows-invalid legacy paths"
+          git push --force origin windows-path-cleanup
+      - name: Verify repaired tree
+        shell: python
+        run: |
+          import subprocess
+          raw = subprocess.check_output(["git", "ls-tree", "-rz", "--name-only", "HEAD"])
+          paths = [p.decode("utf-8", "surrogateescape") for p in raw.split(b"\0") if p]
+          reserved = {"CON", "PRN", "AUX", "NUL", *{f"COM{i}" for i in range(1, 10)}, *{f"LPT{i}" for i in range(1, 10)}}
+          invalid = []
+          for path in paths:
+              for part in path.split("/"):
+                  if any(ch in part for ch in '<>:"|?*') or part.endswith(" ") or part.endswith(".") or part.split(".")[0].upper() in reserved:
+                      invalid.append(path)
+                      break
+          print(f"Remaining Windows-invalid paths: {len(invalid)}")
+          for p in invalid:
+              print(p)
+          if invalid:
+              raise SystemExit(1)
