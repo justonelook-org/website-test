@@ -1,0 +1,41 @@
+name: Windows path audit
+
+on:
+  push:
+    branches: [windows-path-audit]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Audit tracked paths
+        shell: python
+        run: |
+          import subprocess
+          paths = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", "HEAD"], text=True).splitlines()
+          reserved = {"CON", "PRN", "AUX", "NUL", *{f"COM{i}" for i in range(1, 10)}, *{f"LPT{i}" for i in range(1, 10)}}
+          invalid = []
+          for path in paths:
+              reasons = []
+              for part in path.split("/"):
+                  if any(ch in part for ch in '<>:"|?*'):
+                      reasons.append("forbidden character")
+                  if part.endswith(" ") or part.endswith("."):
+                      reasons.append("trailing space or dot")
+                  if part.split(".")[0].upper() in reserved:
+                      reasons.append("reserved Windows device name")
+              if reasons:
+                  invalid.append((path, sorted(set(reasons))))
+          with open("windows-invalid-paths.txt", "w", encoding="utf-8") as f:
+              f.write(f"COUNT\t{len(invalid)}\n")
+              for path, reasons in invalid:
+                  f.write(f"{path}\t{', '.join(reasons)}\n")
+          print(open("windows-invalid-paths.txt", encoding="utf-8").read())
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-invalid-paths
+          path: windows-invalid-paths.txt
