@@ -1,0 +1,43 @@
+name: Generate ebook covers
+
+on:
+  push:
+    branches:
+      - agent/sharp-ebook-covers-final
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/sharp-ebook-covers-final
+          fetch-depth: 0
+
+      - name: Install PDF renderer
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+
+      - name: Render complete first pages at 1200 px
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd library/ebooks
+          mkdir -p covers
+          pdftoppm -f 1 -singlefile -jpeg -scale-to-x 1200 -scale-to-y -1 -jpegopt quality=92,progressive=y,optimize=y JOHN_and_CARLA_SHERMAN_The_Just_One_Look_Method.pdf covers/the_just_one_look_method
+          pdftoppm -f 1 -singlefile -jpeg -scale-to-x 1200 -scale-to-y -1 -jpegopt quality=92,progressive=y,optimize=y JOHN_and_CARLA_SHERMAN_Just_One_Look.pdf covers/just_one_look
+          pdftoppm -f 1 -singlefile -jpeg -scale-to-x 1200 -scale-to-y -1 -jpegopt quality=92,progressive=y,optimize=y JOHN_AND_CARLA_SHERMAN_No_More_Fear_No_More_Anxiety.pdf covers/no_more_fear_no_more_anxiety
+          pdftoppm -f 1 -singlefile -jpeg -scale-to-x 1200 -scale-to-y -1 -jpegopt quality=92,progressive=y,optimize=y JOHN_and_CARLA_SHERMAN_Just_One_Look_the_Story.pdf covers/just_one_look_the_story
+          pdftoppm -f 1 -singlefile -jpeg -scale-to-x 1200 -scale-to-y -1 -jpegopt quality=92,progressive=y,optimize=y JOHN_and_CARLA_SHERMAN_The_Fear_of_Life.pdf covers/the_fear_of_life
+          pdftoppm -f 1 -singlefile -jpeg -scale-to-x 1200 -scale-to-y -1 -jpegopt quality=92,progressive=y,optimize=y JOHN_and_CARLA_SHERMAN_Lookers_Tell_Their_Stories.pdf covers/lookers_tell_their_stories
+
+      - name: Commit rendered covers
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add library/ebooks/covers/*.jpg
+          git commit -m "Generate high-resolution ebook covers" || exit 0
+          git push origin HEAD:agent/sharp-ebook-covers-final
