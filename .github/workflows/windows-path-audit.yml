@@ -3,6 +3,8 @@ name: Windows path audit
 on:
   push:
     branches: [windows-path-audit]
+  pull_request:
+    branches: [main]
 
 jobs:
   audit:
