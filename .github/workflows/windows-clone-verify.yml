@@ -1,0 +1,23 @@
+name: Windows checkout verification
+
+on:
+  push:
+    branches: [windows-path-audit]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repaired branch on Windows
+        uses: actions/checkout@v4
+        with:
+          ref: windows-path-cleanup
+          fetch-depth: 1
+      - name: Confirm clean checkout
+        shell: pwsh
+        run: |
+          git status --short
+          if (git status --porcelain) { throw "Working tree is not clean" }
+          Write-Host "Windows checkout succeeded and working tree is clean."
