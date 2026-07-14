@@ -3,6 +3,8 @@ name: Windows path repair
 on:
   push:
     branches: [windows-path-audit]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
@@ -45,8 +47,6 @@ jobs:
           with open("/tmp/windows-invalid-paths.z", "wb") as f:
               for p in invalid:
                   f.write(p.encode("utf-8", "surrogateescape") + b"\0")
-          with open("/tmp/windows-invalid-paths.txt", "w", encoding="utf-8", errors="backslashreplace") as f:
-              f.write("\n".join(invalid) + "\n")
           PY
           git rm --pathspec-from-file=/tmp/windows-invalid-paths.z --pathspec-file-nul
           git config user.name "github-actions[bot]"
