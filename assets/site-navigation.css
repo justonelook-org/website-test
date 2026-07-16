@@ -1,3 +1,30 @@
+.site-header {
+  box-sizing: border-box;
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 28px 0 0;
+}
+
+.site-brand,
+.brand {
+  color: #0b3d5c;
+  font: 700 1.15rem/1 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+}
+
+.site-brand:hover,
+.brand:hover {
+  text-decoration: none;
+}
+
+.site-brand:focus-visible,
+.brand:focus-visible {
+  outline: 3px solid #9ed9f4;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 .site-nav {
   box-sizing: border-box;
   display: flex;
@@ -127,12 +154,12 @@ main > a.back:first-child {
   margin-bottom: 0;
 }
 
-main > .back:last-child {
-  margin-top: 42px;
-  margin-bottom: 0;
-}
-
 @media (max-width: 600px) {
+  .site-header {
+    width: min(100% - 32px, 760px);
+    padding-top: 22px;
+  }
+
   .site-nav {
     width: min(100% - 32px, 760px);
     padding-top: 22px;
