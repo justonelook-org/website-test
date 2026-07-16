@@ -1,3 +1,8 @@
+body {
+  font-size: 18px;
+  line-height: 1.72;
+}
+
 .site-header {
   box-sizing: border-box;
   width: min(100% - 40px, 760px);
@@ -101,6 +106,8 @@
 .site-content--wide > h1 {
   margin-top: 0;
   margin-bottom: 14px;
+  font-size: clamp(2.2rem, 7vw, 3.25rem);
+  line-height: 1.2;
 }
 
 .site-content > h1 + p,
@@ -155,6 +162,10 @@ main > a.back:first-child {
 }
 
 @media (max-width: 600px) {
+  body {
+    font-size: 17px;
+  }
+
   .site-header {
     width: min(100% - 32px, 760px);
     padding-top: 22px;
