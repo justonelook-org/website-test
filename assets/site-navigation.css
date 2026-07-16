@@ -106,8 +106,15 @@ body {
 .site-content--wide > h1 {
   margin-top: 0;
   margin-bottom: 14px;
-  font-size: clamp(2.2rem, 7vw, 3.25rem);
   line-height: 1.2;
+}
+
+.site-content > h1,
+.content:not(.site-content--wide) > h1,
+.site-content--wide > h1,
+main > h1,
+main article > h1 {
+  font-size: clamp(2rem, 6.5vw, 3rem);
 }
 
 .site-content > h1 + p,
