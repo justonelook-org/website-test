@@ -171,6 +171,17 @@ main > a.back:first-child {
 }
 
 @media (min-width: 601px) {
+  .site-content.reading-column,
+  .content.reading-column,
+  main.reading-column {
+    box-sizing: border-box;
+    padding-right: 40px !important;
+  }
+
+  .reading-column .article-body {
+    max-width: none;
+  }
+
   .site-content > h1,
   .content:not(.site-content--wide) > h1,
   .site-content--wide > h1,
