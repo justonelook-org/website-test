@@ -171,10 +171,26 @@ main > a.back:first-child {
 }
 
 @media (min-width: 601px) {
+  .site-content > h1,
+  .content:not(.site-content--wide) > h1,
+  .site-content--wide > h1,
+  main > h1 {
+    font-size: 2.8125rem;
+  }
+
   main article > h1 {
-    font-size: clamp(2.25rem, 7vw, 3.25rem);
+    font-size: 3rem;
     font-weight: 400;
     line-height: 1.14;
+  }
+
+  .post h2,
+  .episode h2 {
+    font-size: 1.4rem;
+  }
+
+  .content > h2:has(a[href^="library/"]) {
+    font-size: 1.55rem;
   }
 }
 
