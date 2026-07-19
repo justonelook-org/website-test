@@ -178,32 +178,36 @@ main > a.back:first-child {
   margin-top: 38px;
 }
 
-.podcast-about__header {
-  display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
-  align-items: center;
-  gap: 18px;
-}
-
 .podcast-about__title {
-  margin: 5px 0 0;
+  margin: 0 0 16px;
   color: var(--blue, #0b3d5c);
   font-weight: 400;
 }
 
 .podcast-about__body {
-  margin-top: 18px;
-}
-
-.podcast-about__conversation {
-  margin-top: 28px;
-}
-
-.podcast-about__conversation p {
   margin: 0;
 }
 
-.podcast-about__conversation-title {
+.podcast-conversation {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 3px;
+  row-gap: 1px;
+  margin-top: 28px;
+}
+
+.podcast-conversation__copy {
+  display: contents;
+}
+
+.podcast-conversation__copy p {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.podcast-conversation__title {
+  grid-column: 2;
   margin: 0 0 7px;
   color: var(--blue, #0b3d5c);
   font-size: 1.45rem;
@@ -211,15 +215,20 @@ main > a.back:first-child {
   line-height: 1.25;
 }
 
-.podcast-about__aside {
-  justify-self: center;
+.podcast-conversation__zero-wrap {
+  grid-column: 1;
+  grid-row: 1;
+  width: 55px;
+  height: 48px;
+  overflow: hidden;
 }
 
-.podcast-about__zero {
+.podcast-conversation__zero {
   display: block;
-  width: 60px;
-  max-width: 100%;
+  width: 134px;
+  max-width: none;
   height: auto;
+  transform: translate(-13px, -22px);
 }
 
 .podcast-index-intro {
@@ -309,24 +318,22 @@ main > a.back:first-child {
     padding-bottom: max(82px, calc(62px + env(safe-area-inset-bottom)));
   }
 
-  .podcast-about__header {
-    grid-template-columns: 46px minmax(0, 1fr);
-    gap: 13px;
+  .podcast-conversation {
+    grid-template-columns: 47px minmax(0, 1fr);
+    column-gap: 3px;
   }
 
-  .podcast-about__body {
-    margin-top: 16px;
+  .podcast-conversation__zero-wrap {
+    width: 47px;
+    height: 41px;
   }
 
-  .podcast-about__aside {
-    justify-self: center;
+  .podcast-conversation__zero {
+    width: 114px;
+    transform: translate(-11px, -18px);
   }
 
-  .podcast-about__zero {
-    width: 44px;
-  }
-
-  .podcast-about__conversation-title {
+  .podcast-conversation__title {
     font-size: 1.3rem;
   }
 
@@ -342,12 +349,10 @@ main > a.back:first-child {
 }
 
 @media (max-width: 340px) {
-  .podcast-about__header,
   .podcast-index-intro {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .podcast-about__aside,
   .podcast-index-intro img {
     justify-self: start;
   }
