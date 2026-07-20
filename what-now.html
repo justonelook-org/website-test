@@ -65,8 +65,15 @@ a:hover {
     transform: translate(-13px, -22px);
 }
 @media (max-width: 600px) {
+    .attention-exercise-link {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        align-items: start;
+        column-gap: 8px;
+    }
     .attention-exercise-link__zero-wrap {
-        right: calc(100% + 2px);
+        position: relative;
+        right: auto;
         width: 44px;
         height: 40px;
     }
