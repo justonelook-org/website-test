@@ -314,9 +314,11 @@ main > a.back:first-child {
   }
 
   .podcast-conversation__zero-wrap {
-    right: calc(100% + 2px);
+    position: relative;
+    right: auto;
     width: 47px;
     height: 41px;
+    margin-bottom: 8px;
   }
 
   .podcast-conversation__zero {
