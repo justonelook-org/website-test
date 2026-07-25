@@ -85,6 +85,11 @@ body {
   padding: 0 !important;
 }
 
+.site-content--bottom-spaced,
+.content.site-content--bottom-spaced {
+  padding-bottom: max(80px, calc(64px + env(safe-area-inset-bottom))) !important;
+}
+
 .site-content--wide {
   box-sizing: border-box;
   width: min(100% - 40px, 1040px);
