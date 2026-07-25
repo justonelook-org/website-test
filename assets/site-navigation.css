@@ -372,6 +372,18 @@ main > a.back:first-child {
   }
 }
 
+/* Refine the Zero/navigation alignment on narrow portrait screens only. */
+@media (max-width: 600px) and (orientation: portrait) {
+  .site-nav--embedded {
+    padding-top: 8px;
+  }
+
+  .site-nav a {
+    position: relative;
+    top: 4px;
+  }
+}
+
 @media (max-width: 340px) {
   .podcast-index-intro {
     grid-template-columns: minmax(0, 1fr);
