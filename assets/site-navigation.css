@@ -61,8 +61,7 @@ body {
   bottom: -3px;
   width: 52px;
   height: 48px;
-  background: url("images/zero-pointing-right.png") no-repeat -12px -18px / 124px auto;
-  filter: contrast(1.18) saturate(1.08);
+  background: url("images/zero-pointing-right.png") no-repeat -12px -18px / 119px auto;
   pointer-events: none;
 }
 
@@ -333,8 +332,8 @@ main > a.back:first-child {
   .site-nav::before {
     width: 45px;
     height: 42px;
-    background-position: -10px -15px;
-    background-size: 108px auto;
+    background-position: -11px -16px;
+    background-size: 110px auto;
   }
 
   .site-content,
