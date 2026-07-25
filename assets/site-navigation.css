@@ -48,13 +48,13 @@ body {
   padding-top: 16px;
 }
 
-/* Decorative Zero for navigation rows that include both Home and Library. */
-.site-nav:has(a[href$="library.html"]) {
+/* Decorative Zero for every inner-page navigation row. */
+.site-nav {
   position: relative;
   padding-left: 58px;
 }
 
-.site-nav:has(a[href$="library.html"])::before {
+.site-nav::before {
   content: "";
   position: absolute;
   left: 0;
@@ -62,6 +62,7 @@ body {
   width: 52px;
   height: 48px;
   background: url("images/zero-pointing-right.png") no-repeat -12px -18px / 124px auto;
+  filter: contrast(1.18) saturate(1.08);
   pointer-events: none;
 }
 
@@ -325,11 +326,11 @@ main > a.back:first-child {
     padding-top: 14px;
   }
 
-  .site-nav:has(a[href$="library.html"]) {
+  .site-nav {
     padding-left: 50px;
   }
 
-  .site-nav:has(a[href$="library.html"])::before {
+  .site-nav::before {
     width: 45px;
     height: 42px;
     background-position: -10px -15px;
