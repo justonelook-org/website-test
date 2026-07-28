@@ -61,7 +61,7 @@ body {
   bottom: -3px;
   width: 52px;
   height: 48px;
-  background: url("images/zero-pointing-right-nav.png") no-repeat 0 0 / 100% 100%;
+  background: url("../brand/zero-pointing-right-nav.png") no-repeat 0 0 / 100% 100%;
   pointer-events: none;
 }
 
