@@ -139,6 +139,13 @@ body {
   min-height: 36px;
 }
 
+.article-body iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
 .legal-links a:focus-visible {
   outline: 3px solid #9ed9f4;
   outline-offset: 4px;
