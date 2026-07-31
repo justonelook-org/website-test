@@ -115,6 +115,35 @@ body {
   padding: 0 !important;
 }
 
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: 52px;
+  padding-top: 22px;
+  border-top: 1px solid #dfe4e7;
+  font-size: 0.92rem;
+}
+
+.legal-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: #0b3d5c;
+  text-underline-offset: 0.18em;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+}
+
+.legal-links a:focus-visible {
+  outline: 3px solid #9ed9f4;
+  outline-offset: 4px;
+}
+
 .site-content > h1,
 .content:not(.site-content--wide) > h1,
 .site-content--wide > h1,
