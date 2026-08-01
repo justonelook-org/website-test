@@ -18,7 +18,7 @@ redirect behavior have been reviewed.
 
 - The intended publishing branch is `main`.
 - The repository uses Jekyll `_config.yml` to exclude `legacy-site/`.
-- There is currently no repository `CNAME`.
+- The repository `CNAME` file contains `justonelook.org`.
 - There is no custom Pages Actions workflow, so confirm the actual Pages source
   in GitHub Settings > Pages.
 - The repository now contains `privacy.html`, `terms.html`, `copyright.html`,
