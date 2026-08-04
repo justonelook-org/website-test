@@ -17,6 +17,8 @@ body {
   font: 18px/1.72 Georgia, "Times New Roman", serif;
 }
 
+body:has(.guide-panel:not([hidden])) { overflow: hidden; }
+
 button,
 input,
 textarea { font: inherit; }
@@ -51,7 +53,7 @@ textarea:focus-visible {
   text-decoration: none;
 }
 
-.guide { padding: 54px 0 80px; }
+.guide { padding: 28px 0 40px; }
 
 h1,
 h2 {
@@ -130,12 +132,29 @@ button[type="submit"],
 
 button:disabled { cursor: wait; opacity: .65; }
 
-.guide-panel { text-align: center; }
+.guide-panel {
+  height: calc(100dvh - 68px);
+  min-height: 500px;
+  display: grid;
+  grid-template-rows: auto auto minmax(72px, 1fr) auto auto auto auto;
+  align-content: stretch;
+  gap: 8px;
+  padding-top: 12px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.guide-panel[hidden] { display: none; }
+
+.guide-panel > h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.65rem, 4vh, 2.25rem);
+}
 
 .zero-wrap {
   position: relative;
-  width: min(178px, 46vw);
-  margin: 0 auto 24px;
+  width: min(118px, 26vw, 15vh);
+  margin: 0 auto;
 }
 
 .zero {
@@ -183,9 +202,13 @@ button:disabled { cursor: wait; opacity: .65; }
 }
 
 .conversation {
-  min-height: 116px;
+  min-height: 0;
   max-width: 620px;
-  margin: 0 auto 30px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4px 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   text-align: left;
 }
 
@@ -210,15 +233,15 @@ button:disabled { cursor: wait; opacity: .65; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   max-width: 620px;
-  margin: -10px auto 28px;
+  margin: 0 auto;
 }
 
 .conversation-starters[hidden] { display: none; }
 
 .conversation-starters button {
   width: 100%;
-  min-height: 58px;
-  padding: 11px 16px;
+  min-height: 48px;
+  padding: 8px 13px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
@@ -243,15 +266,15 @@ button:disabled { cursor: wait; opacity: .65; }
 }
 
 textarea {
-  min-height: 52px;
-  max-height: 180px;
-  padding: 10px 12px;
-  resize: vertical;
+  min-height: 46px;
+  max-height: 76px;
+  padding: 8px 11px;
+  resize: none;
 }
 
 .form-message {
-  min-height: 1.6em;
-  margin: 10px 0;
+  min-height: 1.25em;
+  margin: 0;
   color: #7a2f2f;
   font-size: .9rem;
 }
@@ -260,7 +283,7 @@ textarea {
   display: flex;
   justify-content: center;
   gap: 22px;
-  margin-top: 24px;
+  margin-top: 0;
   font-size: .92rem;
 }
 
@@ -276,7 +299,7 @@ textarea {
 }
 
 .small-notice {
-  margin-top: 42px;
+  margin: 0;
   color: var(--muted);
   font-size: .78rem;
 }
@@ -315,11 +338,21 @@ dialog::backdrop { background: rgba(20, 31, 38, .34); }
   .pilot-header,
   .guide { width: min(100% - 32px, 760px); }
   .pilot-header { padding-top: 22px; }
-  .guide { padding-top: 42px; }
-  .message-form { grid-template-columns: 1fr; }
-  .conversation-starters { grid-template-columns: 1fr; }
-  #send { justify-self: end; }
+  .guide { padding: 12px 0; }
+  .guide-panel { height: calc(100dvh - 24px); min-height: 460px; gap: 6px; padding-top: 0; }
+  .message-form { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .conversation-starters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+  .conversation-starters button { min-height: 44px; padding: 6px 8px; font-size: .86rem; }
+  .small-notice { font-size: .68rem; line-height: 1.25; }
   .dialog-content { padding: 22px; }
+}
+
+@media (max-height: 620px) {
+  .guide-panel { min-height: 0; }
+  .guide-panel > h1 { font-size: 1.45rem; }
+  .zero-wrap { width: min(84px, 14vh); }
+  .conversation-starters button { min-height: 40px; padding-block: 4px; }
+  .guide-actions { font-size: .8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
