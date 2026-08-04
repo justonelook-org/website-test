@@ -20,7 +20,8 @@ body {
 body:has(.guide-panel:not([hidden])) { overflow: hidden; }
 
 .guide:has(.guide-panel:not([hidden])) {
-  width: min(100% - 64px, 1040px);
+  width: min(100% - 72px, 1180px);
+  padding: 0;
 }
 
 button,
@@ -137,9 +138,8 @@ button[type="submit"],
 button:disabled { cursor: wait; opacity: .65; }
 
 .guide-panel {
-  height: calc(100dvh - 68px);
-  min-height: 500px;
-  padding-top: 12px;
+  height: 100dvh;
+  min-height: 600px;
   overflow: hidden;
   text-align: center;
 }
@@ -147,34 +147,43 @@ button:disabled { cursor: wait; opacity: .65; }
 .guide-panel[hidden] { display: none; }
 
 .guide-identity h1 {
-  margin: 0 0 18px;
-  font-size: clamp(1.65rem, 4vh, 2.25rem);
+  margin: 0 0 22px;
+  font-size: clamp(2rem, 3vw, 2.65rem);
 }
 
 .guide-workspace {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  align-items: center;
-  gap: 56px;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 760px);
+  align-items: start;
+  justify-content: space-between;
+  gap: clamp(44px, 6vw, 84px);
   height: 100%;
   min-height: 0;
+  padding-block: clamp(42px, 8vh, 84px) clamp(28px, 5vh, 54px);
 }
 
 .guide-identity {
-  align-self: center;
+  align-self: start;
 }
 
 .guide-dialogue {
   display: grid;
-  grid-template-rows: minmax(120px, 190px) auto auto auto auto auto;
-  align-content: center;
-  gap: 8px;
+  grid-template-rows: minmax(240px, 1fr) auto auto auto auto auto;
+  align-content: stretch;
+  gap: 12px;
+  height: 100%;
   min-height: 0;
+}
+
+.guide-panel[data-phase="initial"] .guide-dialogue {
+  grid-template-rows: auto auto auto auto auto auto;
+  align-content: start;
 }
 
 .zero-wrap {
   position: relative;
-  width: min(250px, 34vh);
+  width: min(340px, 43vh);
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -224,11 +233,11 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .conversation {
   min-height: 0;
-  max-width: 620px;
+  max-width: none;
   width: 100%;
   max-height: 100%;
   margin: 0 auto;
-  padding: 4px 8px;
+  padding: 6px 10px 12px;
   overflow-y: auto;
   overscroll-behavior: contain;
   text-align: left;
@@ -237,6 +246,11 @@ button:disabled { cursor: wait; opacity: .65; }
 .conversation:has(.quiet-opening) {
   display: grid;
   align-content: center;
+}
+
+.guide-panel[data-phase="initial"] .conversation {
+  min-height: 54px;
+  overflow: visible;
 }
 
 .conversation p { margin: 0 0 20px; }
@@ -259,7 +273,8 @@ button:disabled { cursor: wait; opacity: .65; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  max-width: 620px;
+  max-width: none;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -267,8 +282,8 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .conversation-starters button {
   width: 100%;
-  min-height: 48px;
-  padding: 8px 13px;
+  min-height: 62px;
+  padding: 10px 16px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
@@ -288,14 +303,15 @@ button:disabled { cursor: wait; opacity: .65; }
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 12px;
-  max-width: 620px;
-  margin: auto;
+  max-width: none;
+  width: 100%;
+  margin: 0;
 }
 
 textarea {
-  min-height: 46px;
-  max-height: 76px;
-  padding: 8px 11px;
+  min-height: 68px;
+  max-height: 112px;
+  padding: 10px 12px;
   resize: none;
 }
 
@@ -360,31 +376,53 @@ dialog::backdrop { background: rgba(20, 31, 38, .34); }
   border: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   body { font-size: 17px; }
+  body:has(.guide-panel:not([hidden])) { overflow: auto; }
   .pilot-header,
   .guide { width: min(100% - 32px, 760px); }
   .pilot-header { padding-top: 22px; }
   .guide { padding: 12px 0; }
   .guide:has(.guide-panel:not([hidden])) { width: min(100% - 32px, 760px); }
-  .guide-panel { height: calc(100dvh - 24px); min-height: 460px; padding-top: 0; }
-  .guide-workspace { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 6px; }
+  .guide-panel { height: auto; min-height: 100dvh; overflow: visible; }
+  .guide-workspace {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 24px;
+    height: auto;
+    padding-block: 24px 32px;
+  }
   .guide-identity { align-self: auto; }
-  .guide-identity h1 { margin-bottom: 4px; }
-  .guide-dialogue { gap: 6px; }
+  .guide-identity h1 { margin-bottom: 10px; font-size: clamp(1.85rem, 8vw, 2.35rem); }
+  .guide-dialogue {
+    grid-template-rows: minmax(220px, 42vh) auto auto auto auto auto;
+    gap: 10px;
+    height: auto;
+  }
+  .guide-panel[data-phase="initial"] .guide-dialogue { grid-template-rows: auto auto auto auto auto auto; }
   .message-form { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
-  .zero-wrap { width: min(105px, 24vw, 14vh); }
+  .zero-wrap { width: min(240px, 58vw, 30vh); }
   .conversation-starters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
-  .conversation-starters button { min-height: 44px; padding: 6px 8px; font-size: .86rem; }
+  .conversation-starters button { min-height: 52px; padding: 7px 9px; font-size: .92rem; }
   .small-notice { font-size: .68rem; line-height: 1.25; }
   .dialog-content { padding: 22px; }
 }
 
-@media (max-height: 620px) {
+@media (max-width: 480px) {
+  .conversation-starters { grid-template-columns: 1fr; }
+  .message-form { grid-template-columns: 1fr; }
+  #send { justify-self: end; }
+}
+
+@media (min-width: 721px) and (max-height: 680px) {
   .guide-panel { min-height: 0; }
-  .guide-panel > h1 { font-size: 1.45rem; }
-  .zero-wrap { width: min(84px, 14vh); }
-  .conversation-starters button { min-height: 40px; padding-block: 4px; }
+  .guide-workspace { padding-block: 24px 20px; }
+  .guide-identity h1 { margin-bottom: 10px; font-size: 1.8rem; }
+  .zero-wrap { width: min(280px, 42vh); }
+  .guide-dialogue { grid-template-rows: minmax(150px, 1fr) auto auto auto auto auto; gap: 7px; }
+  .guide-panel[data-phase="initial"] .guide-dialogue { grid-template-rows: auto auto auto auto auto auto; }
+  .conversation-starters button { min-height: 46px; padding-block: 5px; }
+  textarea { min-height: 52px; }
   .guide-actions { font-size: .8rem; }
 }
 
