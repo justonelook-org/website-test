@@ -19,11 +19,6 @@ body {
 
 body:has(.guide-panel:not([hidden])) { overflow: hidden; }
 
-.guide:has(.guide-panel:not([hidden])) {
-  width: min(100% - 72px, 1180px);
-  padding: 0;
-}
-
 button,
 input,
 textarea { font: inherit; }
@@ -138,52 +133,27 @@ button[type="submit"],
 button:disabled { cursor: wait; opacity: .65; }
 
 .guide-panel {
-  height: 100dvh;
-  min-height: 600px;
+  height: calc(100dvh - 68px);
+  min-height: 500px;
+  display: grid;
+  grid-template-rows: auto auto minmax(72px, 1fr) auto auto auto auto;
+  align-content: stretch;
+  gap: 8px;
+  padding-top: 12px;
   overflow: hidden;
   text-align: center;
 }
 
 .guide-panel[hidden] { display: none; }
 
-.guide-identity h1 {
-  margin: 0 0 22px;
-  font-size: clamp(2rem, 3vw, 2.65rem);
-}
-
-.guide-workspace {
-  display: grid;
-  grid-template-columns: minmax(280px, 360px) minmax(0, 760px);
-  align-items: start;
-  justify-content: space-between;
-  gap: clamp(44px, 6vw, 84px);
-  height: 100%;
-  min-height: 0;
-  padding-block: clamp(42px, 8vh, 84px) clamp(28px, 5vh, 54px);
-}
-
-.guide-identity {
-  align-self: start;
-}
-
-.guide-dialogue {
-  display: grid;
-  grid-template-rows: minmax(240px, 1fr) auto auto auto auto auto;
-  align-content: stretch;
-  gap: 12px;
-  height: 100%;
-  min-height: 0;
-}
-
-.guide-panel[data-phase="initial"] .guide-dialogue {
-  grid-template-rows: auto auto auto auto auto auto;
-  align-content: start;
+.guide-panel > h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.65rem, 4vh, 2.25rem);
 }
 
 .zero-wrap {
   position: relative;
-  width: min(340px, 43vh);
-  max-width: 100%;
+  width: min(118px, 26vw, 15vh);
   margin: 0 auto;
 }
 
@@ -233,24 +203,13 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .conversation {
   min-height: 0;
-  max-width: none;
+  max-width: 620px;
   width: 100%;
-  max-height: 100%;
   margin: 0 auto;
-  padding: 6px 10px 12px;
+  padding: 4px 8px;
   overflow-y: auto;
   overscroll-behavior: contain;
   text-align: left;
-}
-
-.conversation:has(.quiet-opening) {
-  display: grid;
-  align-content: center;
-}
-
-.guide-panel[data-phase="initial"] .conversation {
-  min-height: 54px;
-  overflow: visible;
 }
 
 .conversation p { margin: 0 0 20px; }
@@ -273,8 +232,7 @@ button:disabled { cursor: wait; opacity: .65; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  max-width: none;
-  width: 100%;
+  max-width: 620px;
   margin: 0 auto;
 }
 
@@ -282,8 +240,8 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .conversation-starters button {
   width: 100%;
-  min-height: 62px;
-  padding: 10px 16px;
+  min-height: 48px;
+  padding: 8px 13px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
@@ -303,15 +261,14 @@ button:disabled { cursor: wait; opacity: .65; }
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 12px;
-  max-width: none;
-  width: 100%;
-  margin: 0;
+  max-width: 620px;
+  margin: auto;
 }
 
 textarea {
-  min-height: 68px;
-  max-height: 112px;
-  padding: 10px 12px;
+  min-height: 46px;
+  max-height: 76px;
+  padding: 8px 11px;
   resize: none;
 }
 
@@ -376,53 +333,25 @@ dialog::backdrop { background: rgba(20, 31, 38, .34); }
   border: 0;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 600px) {
   body { font-size: 17px; }
-  body:has(.guide-panel:not([hidden])) { overflow: auto; }
   .pilot-header,
   .guide { width: min(100% - 32px, 760px); }
   .pilot-header { padding-top: 22px; }
   .guide { padding: 12px 0; }
-  .guide:has(.guide-panel:not([hidden])) { width: min(100% - 32px, 760px); }
-  .guide-panel { height: auto; min-height: 100dvh; overflow: visible; }
-  .guide-workspace {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    gap: 24px;
-    height: auto;
-    padding-block: 24px 32px;
-  }
-  .guide-identity { align-self: auto; }
-  .guide-identity h1 { margin-bottom: 10px; font-size: clamp(1.85rem, 8vw, 2.35rem); }
-  .guide-dialogue {
-    grid-template-rows: minmax(220px, 42vh) auto auto auto auto auto;
-    gap: 10px;
-    height: auto;
-  }
-  .guide-panel[data-phase="initial"] .guide-dialogue { grid-template-rows: auto auto auto auto auto auto; }
+  .guide-panel { height: calc(100dvh - 24px); min-height: 460px; gap: 6px; padding-top: 0; }
   .message-form { grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
-  .zero-wrap { width: min(240px, 58vw, 30vh); }
   .conversation-starters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
-  .conversation-starters button { min-height: 52px; padding: 7px 9px; font-size: .92rem; }
+  .conversation-starters button { min-height: 44px; padding: 6px 8px; font-size: .86rem; }
   .small-notice { font-size: .68rem; line-height: 1.25; }
   .dialog-content { padding: 22px; }
 }
 
-@media (max-width: 480px) {
-  .conversation-starters { grid-template-columns: 1fr; }
-  .message-form { grid-template-columns: 1fr; }
-  #send { justify-self: end; }
-}
-
-@media (min-width: 721px) and (max-height: 680px) {
+@media (max-height: 620px) {
   .guide-panel { min-height: 0; }
-  .guide-workspace { padding-block: 24px 20px; }
-  .guide-identity h1 { margin-bottom: 10px; font-size: 1.8rem; }
-  .zero-wrap { width: min(280px, 42vh); }
-  .guide-dialogue { grid-template-rows: minmax(150px, 1fr) auto auto auto auto auto; gap: 7px; }
-  .guide-panel[data-phase="initial"] .guide-dialogue { grid-template-rows: auto auto auto auto auto auto; }
-  .conversation-starters button { min-height: 46px; padding-block: 5px; }
-  textarea { min-height: 52px; }
+  .guide-panel > h1 { font-size: 1.45rem; }
+  .zero-wrap { width: min(84px, 14vh); }
+  .conversation-starters button { min-height: 40px; padding-block: 4px; }
   .guide-actions { font-size: .8rem; }
 }
 

@@ -51,7 +51,6 @@
     }
     entryError.textContent = "";
     entry.hidden = true;
-    guidePanel.dataset.phase = "initial";
     guidePanel.hidden = false;
     messageInput.focus();
   });
@@ -67,7 +66,6 @@
     event.preventDefault();
     const message = messageInput.value.trim();
     if (!message || sessionComplete) return;
-    guidePanel.dataset.phase = "active";
     if (conversationStarters) conversationStarters.hidden = true;
     appendMessage("user", message);
     messageInput.value = "";
@@ -119,7 +117,6 @@
     status.textContent = "";
     guidePanel.hidden = true;
     guidePanel.dataset.state = "quiet";
-    guidePanel.dataset.phase = "initial";
     entry.hidden = false;
     accessCodeInput.focus();
   });
