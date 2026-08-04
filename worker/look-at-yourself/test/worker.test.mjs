@@ -126,6 +126,9 @@ test("sends temporary context with storage disabled", async () => {
     assert.match(openAIBody.instructions, /not the stress—just that feeling/);
     assert.match(openAIBody.instructions, /asks what “look” means/);
     assert.match(openAIBody.instructions, /Markdown bold sparingly/);
+    assert.match(openAIBody.instructions, /not response templates/i);
+    assert.match(openAIBody.instructions, /do not repeat a complete sentence or full sequence/i);
+    assert.match(openAIBody.instructions, /do not automatically repeat the entire thoughts\/emotions\/body\/story contrast/i);
   } finally {
     globalThis.fetch = originalFetch;
   }
