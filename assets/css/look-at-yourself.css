@@ -256,6 +256,10 @@ button:disabled { cursor: wait; opacity: .65; }
   background: var(--soft);
 }
 
+@media (min-width: 601px) {
+  .conversation-starters { margin: -14px auto 14px; }
+}
+
 .message-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
