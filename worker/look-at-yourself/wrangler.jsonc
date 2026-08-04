@@ -9,7 +9,7 @@
     "enabled": false
   },
   "vars": {
-    "ALLOWED_ORIGINS": "https://justonelook.org,https://www.justonelook.org,http://localhost:8000,http://127.0.0.1:8000"
+    "ALLOWED_ORIGINS": "https://justonelook.org,https://www.justonelook.org,https://website-test-zero.pages.dev,http://localhost:8000,http://127.0.0.1:8000"
   },
   "ratelimits": [
     {
