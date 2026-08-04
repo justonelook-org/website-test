@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Directed Attention Exercise — Just One Look</title>
+  <meta name="description" content="A private pilot of the Self-Directed Attention Exercise AI guide.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <link rel="stylesheet" href="../../assets/css/look-at-yourself.css">
+</head>
+<body>
+  <header class="pilot-header"><a class="pilot-brand" href="../../index.html">JUST ONE LOOK</a></header>
+  <main class="guide" data-api-endpoint="https://look-at-yourself-api.YOUR-SUBDOMAIN.workers.dev/api/self-directed-attention" data-local-endpoint="/api/self-directed-attention" data-opening="Have you already performed the inward look—looked directly at the feeling you would call &quot;me&quot;?" data-max-responses="5">
+    <section id="entry" class="entry" aria-labelledby="entry-title">
+      <h1 id="entry-title">Before you begin</h1>
+      <p>This guide uses AI. What you write is sent to OpenAI to produce a response. Please don’t include your name, contact details, or other private information.</p>
+      <form id="access-form" class="access-form">
+        <label for="access-code">Pilot access code</label>
+        <input id="access-code" name="access-code" type="password" autocomplete="off" required>
+        <fieldset><legend>Choose one</legend>
+          <label class="choice"><input type="radio" name="permission" value="adult" required> I am an adult</label>
+          <label class="choice"><input type="radio" name="permission" value="guardian" required> A parent or guardian approves</label>
+        </fieldset>
+        <div id="guardian-note" class="guardian-note" hidden>
+          <p>This guide sends what the user writes to OpenAI to generate a response. It does not ask for names or personal details, and this website does not intentionally save the conversation.</p>
+          <label class="choice"><input id="guardian-approval" type="checkbox"> I approve</label>
+        </div>
+        <p id="entry-error" class="form-message" role="alert"></p>
+        <button type="submit">Begin</button>
+      </form>
+    </section>
+    <section id="guide-panel" class="guide-panel" aria-labelledby="guide-title" hidden>
+      <h1 id="guide-title">Self-Directed Attention Exercise</h1>
+      <div class="zero-wrap" aria-hidden="true">
+        <img class="zero" src="../../assets/brand/jol-logo.jpg" alt="" width="675" height="932">
+        <span class="zero-eyelid zero-eyelid--left"></span><span class="zero-eyelid zero-eyelid--right"></span>
+      </div>
+      <div id="conversation" class="conversation" aria-live="polite" aria-atomic="false"><p class="quiet-opening">Have you already performed the inward look—looked directly at the feeling you would call “me”?</p></div>
+      <form id="message-form" class="message-form">
+        <label class="visually-hidden" for="message">Your message</label>
+        <textarea id="message" name="message" rows="2" maxlength="600" required></textarea>
+        <button id="send" type="submit">Send</button>
+      </form>
+      <p id="guide-status" class="form-message" role="status" aria-live="polite"></p>
+      <div class="guide-actions"><button id="restart" class="text-button" type="button">Restart</button><a href="../look-at-yourself/">Look At Yourself</a><a href="../../contact.html">Contact</a></div>
+      <p class="small-notice">AI guide <span aria-hidden="true">·</span> Please don’t share personal information <span aria-hidden="true">·</span> <button id="open-privacy" class="link-button" type="button">Privacy</button></p>
+    </section>
+  </main>
+  <dialog id="privacy-dialog" aria-labelledby="privacy-title"><div class="dialog-content">
+    <h2 id="privacy-title">About this AI guide</h2>
+    <p>This guide uses OpenAI to generate its responses. What you write is sent to OpenAI for processing.</p>
+    <p>The Just One Look website does not intentionally save your conversation. OpenAI may retain API data temporarily to operate and protect its service. API messages are not used to train OpenAI’s models by default.</p>
+    <p>Please do not enter your name, address, contact details, medical information, or other private information.</p>
+    <p>This guide only provides the Self-Directed Attention Exercise. It is not a person, therapist, medical service, or emergency service.</p>
+    <p>For privacy questions, <a href="../../contact.html">contact the Just One Look team</a>.</p>
+    <form method="dialog"><button type="submit">Close</button></form>
+  </div></dialog>
+  <script src="../../assets/js/look-at-yourself.js" defer></script>
+</body>
+</html>
