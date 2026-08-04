@@ -19,6 +19,10 @@ body {
 
 body:has(.guide-panel:not([hidden])) { overflow: hidden; }
 
+.guide:has(.guide-panel:not([hidden])) {
+  width: min(100% - 64px, 1040px);
+}
+
 button,
 input,
 textarea { font: inherit; }
@@ -149,8 +153,9 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .guide-workspace {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 38px;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: center;
+  gap: 56px;
   height: 100%;
   min-height: 0;
 }
@@ -161,15 +166,15 @@ button:disabled { cursor: wait; opacity: .65; }
 
 .guide-dialogue {
   display: grid;
-  grid-template-rows: minmax(80px, 1fr) auto auto auto auto auto;
-  align-content: stretch;
+  grid-template-rows: minmax(120px, 190px) auto auto auto auto auto;
+  align-content: center;
   gap: 8px;
   min-height: 0;
 }
 
 .zero-wrap {
   position: relative;
-  width: min(150px, 22vh);
+  width: min(250px, 34vh);
   margin: 0 auto;
 }
 
@@ -227,6 +232,11 @@ button:disabled { cursor: wait; opacity: .65; }
   overflow-y: auto;
   overscroll-behavior: contain;
   text-align: left;
+}
+
+.conversation:has(.quiet-opening) {
+  display: grid;
+  align-content: center;
 }
 
 .conversation p { margin: 0 0 20px; }
@@ -356,6 +366,7 @@ dialog::backdrop { background: rgba(20, 31, 38, .34); }
   .guide { width: min(100% - 32px, 760px); }
   .pilot-header { padding-top: 22px; }
   .guide { padding: 12px 0; }
+  .guide:has(.guide-panel:not([hidden])) { width: min(100% - 32px, 760px); }
   .guide-panel { height: calc(100dvh - 24px); min-height: 460px; padding-top: 0; }
   .guide-workspace { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 6px; }
   .guide-identity { align-self: auto; }
