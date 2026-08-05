@@ -3,7 +3,13 @@
 This directory contains repository-derived launch material for coordinating the
 move from the existing site to GitHub Pages.
 
-## Redirect inventory
+## Test protocol and latest results
+
+- `test-protocol.md` is the reusable pre-launch and post-cutover test protocol.
+- `pre-launch-test-report.md` records the results for the currently reviewed
+  production candidate and separates repository work from hosting/DNS work.
+
+## Historical route inventory
 
 Run:
 
@@ -11,22 +17,20 @@ Run:
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/New-RedirectInventory.ps1
 ```
 
-The generated `redirect-inventory.csv` uses three statuses:
+The generated `redirect-inventory.csv` records proposed mappings from an
+earlier launch plan. The hosting owner has since decided that the old server
+will be taken offline and that no legacy redirects will be implemented. The
+file is retained only as historical route documentation and is not an active
+cutover checklist.
+
+Its original statuses were:
 
 - `ready`: repository inspection found a clear old-to-new mapping.
 - `review`: the proposed destination or retirement policy needs a human decision.
 - `no-target`: the new site does not yet contain a destination.
 
-The current generated inventory has no `no-target` rows. The remaining review
-rows concern the inactive newsletter and the policy for historical forum entry
-points.
-
-The inventory deliberately concentrates on stable top-level URLs, the old
-WordPress Blog/Podcast routes, and all dated posts represented in the new site.
-It does not automatically redirect every historical forum thread, WordPress
-API endpoint, tag, author, search, comment feed, or attachment URL. Those large
-route families need an explicit preserve, archive, `410 Gone`, or fallback
-policy from the person controlling the old server.
+Do not install these mappings on GitHub Pages or keep the old server online to
+serve them unless the hosting owner explicitly reverses the current decision.
 
 ## Legacy publication safety
 
