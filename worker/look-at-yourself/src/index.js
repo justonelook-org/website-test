@@ -27,6 +27,7 @@ Do not trigger this exception for ordinary references to fear, sadness, illness,
 
 const guides = {
   "/api/look-at-yourself": {
+    requiresAccessCode: false,
     apiKeyName: "OPENAI_API_KEY",
     modelEnvName: "LOOK_MODEL",
     reasoningEnvName: "LOOK_REASONING_EFFORT",
@@ -58,6 +59,7 @@ WEBSITE GUIDANCE STYLE
 `
   },
   "/api/self-directed-attention": {
+    requiresAccessCode: true,
     apiKeyName: "OPENAI_SDA_API_KEY",
     modelEnvName: "SDA_MODEL",
     reasoningEnvName: "SDA_REASONING_EFFORT",
@@ -87,10 +89,12 @@ export default {
     if (!originIsAllowed(origin, env.ALLOWED_ORIGINS)) return jsonResponse({ error: "This request is not allowed." }, 403, corsHeaders);
 
     const apiKey = env[guide.apiKeyName];
-    if (!apiKey || !env.PILOT_ACCESS_CODE) return jsonResponse({ error: "The pilot is not configured yet." }, 503, corsHeaders);
+    if (!apiKey || (guide.requiresAccessCode && !env.PILOT_ACCESS_CODE)) return jsonResponse({ error: "The guide is not configured yet." }, 503, corsHeaders);
 
-    const suppliedCode = readBearerToken(request.headers.get("Authorization"));
-    if (!suppliedCode || suppliedCode !== env.PILOT_ACCESS_CODE) return jsonResponse({ error: "The pilot access code was not accepted." }, 401, corsHeaders);
+    if (guide.requiresAccessCode) {
+      const suppliedCode = readBearerToken(request.headers.get("Authorization"));
+      if (!suppliedCode || suppliedCode !== env.PILOT_ACCESS_CODE) return jsonResponse({ error: "The pilot access code was not accepted." }, 401, corsHeaders);
+    }
 
     let body;
     try {

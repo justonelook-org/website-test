@@ -13,13 +13,14 @@ const baseEnv = {
 };
 
 function request(body, options = {}) {
+  const headers = {
+    "Content-Type": "application/json",
+    "Origin": options.origin || allowedOrigin
+  };
+  if (!options.omitAuthorization) headers.Authorization = `Bearer ${options.accessCode || "test-pilot-code"}`;
   return new Request(`https://pilot-api.example${options.path || "/api/look-at-yourself"}`, {
     method: options.method || "POST",
-    headers: {
-      "Authorization": `Bearer ${options.accessCode || "test-pilot-code"}`,
-      "Content-Type": "application/json",
-      "Origin": options.origin || allowedOrigin
-    },
+    headers,
     body: options.method === "OPTIONS" ? undefined : JSON.stringify(body)
   });
 }
@@ -43,9 +44,23 @@ test("rejects an unapproved website origin", async () => {
   assert.equal(response.status, 403);
 });
 
-test("rejects a wrong invitation code", async () => {
-  const response = await worker.fetch(request(validBody(), { accessCode: "wrong" }), baseEnv);
+test("keeps the private SDA guide behind its invitation code", async () => {
+  const response = await worker.fetch(request(validBody(), { path: "/api/self-directed-attention", accessCode: "wrong" }), baseEnv);
   assert.equal(response.status, 401);
+});
+
+test("allows the public Looking guide without exposing an invitation code", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({
+    output: [{ content: [{ type: "output_text", text: "Look directly at that simple feeling of being you." }] }]
+  }), { status: 200, headers: { "Content-Type": "application/json" } });
+
+  try {
+    const response = await worker.fetch(request(validBody(), { omitAuthorization: true }), baseEnv);
+    assert.equal(response.status, 200);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
 
 test("rejects excessive message length before contacting OpenAI", async () => {

@@ -18,8 +18,12 @@
   const restartButton = document.querySelector("#restart");
   const privacyButton = document.querySelector("#open-privacy");
   const privacyDialog = document.querySelector("#privacy-dialog");
+  const ageDialog = document.querySelector("#age-dialog");
+  const ageForm = document.querySelector("#age-form");
+  const adultConfirmation = document.querySelector("#adult-confirmation");
 
   const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  const publicAccess = main.dataset.publicAccess === "true";
   const apiEndpoint = isLocal ? `${window.location.origin}${main.dataset.localEndpoint}` : main.dataset.apiEndpoint;
   const opening = main.dataset.opening;
   const maxResponses = Number.parseInt(main.dataset.maxResponses || "5", 10);
@@ -28,14 +32,15 @@
   let accessCode = "";
   let assistantCount = 0;
   let sessionComplete = false;
+  let adultConfirmed = false;
 
-  entryForm.addEventListener("change", () => {
+  entryForm?.addEventListener("change", () => {
     const permission = new FormData(entryForm).get("permission");
     guardianNote.hidden = permission !== "guardian";
     if (permission !== "guardian") guardianApproval.checked = false;
   });
 
-  entryForm.addEventListener("submit", (event) => {
+  entryForm?.addEventListener("submit", (event) => {
     event.preventDefault();
     const permission = new FormData(entryForm).get("permission");
     if (permission === "guardian" && !guardianApproval.checked) {
@@ -55,6 +60,14 @@
     messageInput.focus();
   });
 
+  ageForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!adultConfirmation.checked) return;
+    adultConfirmed = true;
+    ageDialog.close();
+    messageForm.requestSubmit();
+  });
+
   conversationStarters?.addEventListener("click", (event) => {
     const button = event.target.closest("[data-starter]");
     if (!button || sendButton.disabled) return;
@@ -66,6 +79,11 @@
     event.preventDefault();
     const message = messageInput.value.trim();
     if (!message || sessionComplete) return;
+    if (publicAccess && !adultConfirmed) {
+      ageDialog.showModal();
+      adultConfirmation.focus();
+      return;
+    }
     if (conversationStarters) conversationStarters.hidden = true;
     appendMessage("user", message);
     messageInput.value = "";
@@ -74,9 +92,11 @@
 
     try {
       if (apiEndpoint.includes("YOUR-SUBDOMAIN")) throw new Error("The pilot has not yet been connected to its private service.");
+      const headers = { "Content-Type": "application/json" };
+      if (!publicAccess) headers.Authorization = `Bearer ${accessCode}`;
       const response = await fetch(apiEndpoint, {
         method: "POST",
-        headers: { "Authorization": `Bearer ${accessCode}`, "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ sessionId, turnCount: assistantCount + 1, messages })
       });
       const body = await response.json().catch(() => ({}));
@@ -108,17 +128,18 @@
     assistantCount = 0;
     sessionComplete = false;
     accessCode = "";
-    accessCodeInput.value = "";
-    guardianApproval.checked = false;
-    guardianNote.hidden = true;
-    entryForm.reset();
+    if (accessCodeInput) accessCodeInput.value = "";
+    if (guardianApproval) guardianApproval.checked = false;
+    if (guardianNote) guardianNote.hidden = true;
+    entryForm?.reset();
     conversation.replaceChildren(createParagraph("quiet-opening", opening));
     if (conversationStarters) conversationStarters.hidden = false;
     status.textContent = "";
-    guidePanel.hidden = true;
+    guidePanel.hidden = !publicAccess;
     guidePanel.dataset.state = "quiet";
-    entry.hidden = false;
-    accessCodeInput.focus();
+    if (entry) entry.hidden = publicAccess;
+    if (publicAccess) messageInput.focus();
+    else accessCodeInput.focus();
   });
 
   privacyButton.addEventListener("click", () => privacyDialog.showModal());
